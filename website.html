@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Discord Link Generator</title>
+	<style type="text/css">
+		body {
+			font-family: Arial, sans-serif;
+		}
+		input[type="number"] {
+			padding: 8px;
+			border-radius: 4px;
+			border: 1px solid #ccc;
+			font-size: 16px;
+			width: 100px;
+			margin-bottom: 16px;
+		}
+		button {
+			padding: 8px 16px;
+			background-color: #4CAF50;
+			color: white;
+			border: none;
+			border-radius: 4px;
+			cursor: pointer;
+			font-size: 16px;
+		}
+		button:hover {
+			background-color: #3e8e41;
+		}
+		.link-list {
+			list-style: none;
+			margin: 0;
+			padding: 0;
+		}
+		.link-list li {
+			margin-bottom: 8px;
+		}
+	</style>
+</head>
+<body>
+	<h1>Discord Template Generator</h1>
+	<label for="templates">Number of Templates:</label>
+	<input type="number" id="templates" name="templates" min="1" max="1000" value="1">
+	<button onclick="generateLinks()">Generate Links</button>
+	<ul class="link-list" id="linkList">
+	</ul>
+
+	<script type="text/javascript">
+		function generateLinks() {
+			var templates = parseInt(document.getElementById("templates").value);
+			var linkList = document.getElementById("linkList");
+			linkList.innerHTML = "";
+
+			for (var i = 0; i < templates; i++) {
+				var link = "https://discord.new/";
+				var characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+				for (var j = 0; j < 12; j++) {
+					link += characters.charAt(Math.floor(Math.random() * characters.length));
+				}
+				var listItem = document.createElement("li");
+				var linkText = document.createTextNode(link);
+				var anchor = document.createElement("a");
+				anchor.setAttribute("href", link);
+				anchor.appendChild(linkText);
+				listItem.appendChild(anchor);
+				linkList.appendChild(listItem);
+			}
+		}
+	</script>
+</body>
+</html>
